@@ -1,3 +1,11 @@
 body{
-    background:yellow;
+    background:black;
 }
+
+.calculatorWrapper{
+    max-width:900px;
+    margin:0 auto;
+    background:white;
+    height:200px;
+}
+
