@@ -1,5 +1,5 @@
 body{
-    background:black;
+    background:white;
 }
 
 .calculatorWrapper{
@@ -9,3 +9,42 @@ body{
     min-height:200px;
 }
 
+.leftSide,
+.rightSide{
+    float:left;
+}
+.clearfix{
+    clear:both;
+}
+.preview,
+.maths {
+    width:120px;
+}
+.clear{
+    width:100px;
+    background:red;
+    color:white;
+    border:1px solid darkred;
+    margin-top:10px;
+}
+.number{
+    width:30px;
+}
+.equals{
+    width:100px;
+    margin-top:10px;
+    background:green;
+    color:white;
+    border:1px solid darkgreen;
+}
+.rightSide{
+    margin-left:10px;
+}
+.decimal{
+    width:65px;
+    margin-top:10px;
+}
+.operator,
+.number{
+    margin-top:10px;
+}
