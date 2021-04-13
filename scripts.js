@@ -103,6 +103,7 @@ function clear(event){
     number1 = "";
     number2 = "";
     operator = "";
+    objPrevious.value = "";
     objPreview.value = "";
     objMaths.value = "";
     blnEquals = true;
