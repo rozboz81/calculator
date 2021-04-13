@@ -84,7 +84,7 @@ function preview(event){
         if(operator){
             if(number2){
                 if(currentItem == '.'){
-                    if(!hasDecimal(number1)){
+                    if(!hasDecimal(number2)){
                         number2 += currentItem;
                     }
                 } else {
