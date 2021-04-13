@@ -9,7 +9,7 @@ var arrOperators = document.querySelectorAll(".operator");
 var objPreview = document.querySelector(".preview");
 // console.log(objPreview);
 var objPrevious = document.querySelector(".previous");
- // console.log(objPreview);
+// console.log(objPreview);
 var objMaths = document.querySelector(".maths");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
@@ -17,9 +17,10 @@ var objClear = document.querySelector(".clear");
 var objEquals = document.querySelector(".equals");
 // console.log(objEquals);
 var objError = document.querySelector(".error");
- // console.log(objError);
- var objDecimal = document.querySelector(".decimal");
- // console.log(objError);
+// console.log(objError);
+var objDecimal = document.querySelector(".decimal");
+// console.log(objError);
+
 
 /*----- Event Listeners -----*/
 for(counter = 0; counter < arrNumbers.length; counter++){
@@ -34,6 +35,7 @@ for(counter = 0; counter < arrOperators.length; counter++){
 }
 objClear.addEventListener("click", clear);
 objEquals.addEventListener("click", equals);
+objDecimal.addEventListener("click", preview);
 
 /*----- Functions -----*/
 function preview(event){
@@ -54,7 +56,7 @@ function preview(event){
             dataType = 'number'
         break;
     }
-    // console.log(currentItem);
+    console.log(currentItem);
     // console.log(dataType);
     if(dataType == 'operator'){
         if(blnEquals){
@@ -81,23 +83,51 @@ function preview(event){
         }
         if(operator){
             if(number2){
-                number2 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number2 += currentItem;
+                    }
+                } else {
+                    number2 += currentItem;
+                }
             } else {
-                number2 = currentItem;
+                if(currentItem == '.'){
+                    number2 = '0.';
+                } else {
+                    number2 = currentItem;
+                }
             }
             strMessage = number1 + ' ' + operator + ' ' + number2;
             var sum = calculator(number1,number2,operator);
             objMaths.value = sum;
         } else {
             if(number1){
-                number1 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number1 += currentItem;
+                    }
+                } else {
+                    number1 += currentItem;
+                }
             } else {
-                number1 = currentItem;
+                if(currentItem == '.'){
+                    number1 = '0.';
+                } else {
+                    number1 = currentItem;
+                }
             }
             strMessage = number1;
         }
     }
     objPreview.value = strMessage;
+}
+
+function hasDecimal(number){
+    if(number.indexOf('.') !== -1){
+        objError.innerHTML = 'You can only have one decimal place per number';
+        return true;
+    }
+    return false;
 }
 
 function clear(event){
@@ -109,6 +139,7 @@ function clear(event){
     objMaths.value = "";
     objError.innerHTML = "";
 }
+
 
 function equals(){
     var sum = calculator(number1,number2,operator);
@@ -129,22 +160,25 @@ function isValidNumber(number){
     return !isNaN(number);
 }
 function calculator(number1,number2,operator){
+    // console.log(number1);
+    // console.log(number2);
+    // console.log(operator);
     //if number1 is not a number
-    if(!isValidNumber(number1)){
+    if(!isValidNumber(number1) || !number1){
         //end the function here and pass the message below.
-        objError.innerHTML = 'Argument 1 must be a number';
+        objError.innerHTML = 'Number 1 must be set';
         return;
     }
-        // if the operator does not equal + - * / %
+    // if the operator does not equal + - * / %
     if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
         //end the function here and pass the message below.
-        objError.innerHTML = 'Argument 3 must be an arithmatic operator';
+        objError.innerHTML = 'You need to set an operator';
         return;
     }
     //if number 2 is not a number
-    if(!isValidNumber(number2)){
+    if(!isValidNumber(number2) || !number2){
         //end the function here and pass the message below.
-        objError.innerHTML = 'Argument 2 must be a number';
+        objError.innerHTML = 'Number 2 must be set';
         return;
     }
     //all fo the validation has passed so we need to do maths
