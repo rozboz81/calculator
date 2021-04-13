@@ -106,6 +106,7 @@ function clear(event){
     objPrevious.value = "";
     objPreview.value = "";
     objMaths.value = "";
+    objError.innerHTML = "";
 }
 
 function equals(){
